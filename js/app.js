@@ -5,8 +5,7 @@ class Enemy {
         this.y = y;
         this.speedFactor = speedFactor;
     }
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+
     update(dt){
         if(this.x > 5){
             this.reset();
@@ -38,6 +37,25 @@ class Player {
     render(){
         ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
     }
+
+    handleInput(input){
+        switch(input) {
+            case 'up':
+                this.y = this.y > 0 ? this.y -= 1 : this.y;
+                break;
+            case 'down':
+                this.y = this.y > 4 ? this.y : this.y += 1;
+                break;
+            case 'left':
+                this.x = this.x > 0 ? this.x -= 1 : this.x;
+                break;
+            case 'right':
+                this.x = this.x > 3 ? this.x : this.x += 1;
+                break;
+            default:
+                break;
+        }
+    }    
 }
 
 let allEnemies = [];
@@ -49,9 +67,6 @@ allEnemies.push(bugTwo);
 allEnemies.push(bugThree);
 const player = new Player();
 
-
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
