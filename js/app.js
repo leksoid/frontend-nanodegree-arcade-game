@@ -1,19 +1,30 @@
 class Enemy {
-    constructor(x,y){
+    constructor(x,y,speedFactor){
         this.sprite = 'images/enemy-bug.png';
         this.x = x;
         this.y = y;
+        this.speedFactor = speedFactor;
     }
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
     update(dt){
-        // You should multiply any movement by the dt parameter
-        // which will ensure the game runs at the same speed for
-        // all computers.
+        if(this.x > 5){
+            this.reset();
+        } else {
+            this.x += dt*this.speedFactor;
+        }
     }
 
     render(){
-        ctx.drawImage(Resources.get(this.sprite), this.x * 90, this.y * 70);
+        ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
+    }
+
+    reset(){
+        if(this.speedFactor > 4){
+            this.speedFactor = Math.floor(2+Math.random());
+        }        
+        this.speedFactor += Math.random();
+        this.x = -Math.floor(1+Math.random()*2);
     }
 }
 
@@ -21,26 +32,21 @@ class Player {
     constructor(){
         this.sprite = 'images/char-boy.png';
         this.x = 2;
-        this.y = 6;
+        this.y = 4.8;
     }
 
     render(){
-        ctx.drawImage(Resources.get(this.sprite), this.x * 90, this.y * 70);
+        ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
     }
 }
 
 let allEnemies = [];
-const bugOne = new Enemy(0,1);
-const bugTwo = new Enemy(0,2);
-const bugThree = new Enemy(0,3);
+const bugOne = new Enemy(-2,0.75,3);
+const bugTwo = new Enemy(-3,1.75,3);
+const bugThree = new Enemy(-1,2.75,3);
 allEnemies.push(bugOne);
 allEnemies.push(bugTwo);
 allEnemies.push(bugThree);
-
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
 const player = new Player();
 
 
