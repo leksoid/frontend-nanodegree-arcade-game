@@ -1,4 +1,5 @@
-/* Engine.js
+/* NO NEED TO EDIT THIS FILE
+ * Engine.js
  * This file provides the game loop functionality (update entities and render),
  * draws the initial game board on the screen, and then calls the update and
  * render methods on your player and enemy objects (defined in your app.js).
@@ -90,10 +91,10 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        allEnemies.forEach(function(enemy) {
-            enemy.update(dt);
-        });
-        player.update();
+        //allEnemies.forEach(function(enemy) {
+        //   enemy.update(dt);
+        //});
+        //player.update();
     }
 
     /* This function initially draws the "game level", it will then call
