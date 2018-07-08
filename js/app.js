@@ -11,6 +11,15 @@ class Enemy {
             this.reset();
         } else {
             this.x += dt*this.speedFactor;
+            this.checkCollisions();
+        }
+    }
+
+    checkCollisions(){
+        if(this.y >= player.y - 0.5 && this.y <= player.y + 0.5){
+            if(this.x >= player.x - 0.5 && this.x <= player.x + 0.5){
+                player.reset();
+            }
         }
     }
 
@@ -55,7 +64,23 @@ class Player {
             default:
                 break;
         }
-    }    
+    }
+
+    reset(){
+        this.x = 2;
+        this.y = 4.8;
+    }
+
+    update(){
+        if(this.y < 0){
+            this.victory()
+            this.reset();
+        }
+    }
+
+    victory(){
+        console.log("Hoorey!")
+    }
 }
 
 let allEnemies = [];
