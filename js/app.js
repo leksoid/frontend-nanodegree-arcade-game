@@ -96,13 +96,12 @@ const player = new Player();
 
 function closeModal(){
     modal.style.display = "none";
-    resetAllEntities();
+    allEnemies.forEach(enemy=>enemy.reset());
 }
 
 function resetAllEntities(){
     closeModal();
     player.reset();
-    allEnemies.forEach(enemy=>enemy.reset());
 }
 
 document.addEventListener('keyup', function(e) {
