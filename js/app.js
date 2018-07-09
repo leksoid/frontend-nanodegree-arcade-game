@@ -1,3 +1,5 @@
+const modal = document.getElementById('myModal');
+
 class Enemy {
     constructor(x,y,speedFactor){
         this.sprite = 'images/enemy-bug.png';
@@ -28,11 +30,11 @@ class Enemy {
     }
 
     reset(){
-        if(this.speedFactor > 4){
+        if(this.speedFactor > 5){
             this.speedFactor = Math.floor(2+Math.random());
         }        
         this.speedFactor += Math.random();
-        this.x = -Math.floor(1+Math.random()*2);
+        this.x = -Math.floor(1+Math.random()*4);
     }
 }
 
@@ -79,18 +81,29 @@ class Player {
     }
 
     victory(){
-        console.log("Hoorey!")
+        modal.style.display = "block";
     }
 }
 
 let allEnemies = [];
-const bugOne = new Enemy(-2,0.75,3);
-const bugTwo = new Enemy(-3,1.75,3);
-const bugThree = new Enemy(-1,2.75,3);
+const bugOne = new Enemy(-1,0.75,3);
+const bugTwo = new Enemy(-2,1.75,3);
+const bugThree = new Enemy(-4,2.75,3);
 allEnemies.push(bugOne);
 allEnemies.push(bugTwo);
 allEnemies.push(bugThree);
 const player = new Player();
+
+function closeModal(){
+    modal.style.display = "none";
+    resetAllEntities();
+}
+
+function resetAllEntities(){
+    closeModal();
+    player.reset();
+    allEnemies.forEach(enemy=>enemy.reset());
+}
 
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
