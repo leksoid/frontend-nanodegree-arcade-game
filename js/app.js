@@ -8,6 +8,8 @@ class Enemy {
         this.speedFactor = speedFactor;
     }
 
+    //update the object of Enemy, increase speed based on dt and speedFactor, reset the location 
+    //when leaves the screen
     update(dt){
         if(this.x > 5){
             this.reset();
@@ -17,6 +19,8 @@ class Enemy {
         }
     }
 
+    //check if objects of Enemy and Player occupy close space, 
+    //if yes, Player loses and goes to initial position
     checkCollisions(){
         if(this.y >= player.y - 0.5 && this.y <= player.y + 0.5){
             if(this.x >= player.x - 0.5 && this.x <= player.x + 0.5){
@@ -29,6 +33,7 @@ class Enemy {
         ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
     }
 
+    //resets Enemy, changing the speed 
     reset(){
         if(this.speedFactor > 5){
             this.speedFactor = Math.floor(2+Math.random());
@@ -49,6 +54,7 @@ class Player {
         ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
     }
 
+    //based on Key pressed move the Player on screen, but not off it
     handleInput(input){
         switch(input) {
             case 'up':
@@ -75,11 +81,12 @@ class Player {
 
     update(){
         if(this.y < 0){
-            this.victory()
+            this.victory();
             this.reset();
         }
     }
 
+    //display the modal
     victory(){
         modal.style.display = "block";
     }
