@@ -4,9 +4,9 @@ This is a interactive game, where the user is controling the Player. The goal is
 
 ## Table of Contents
 
-* [How to Run the Game](#run)
-* [Rules of the Game](#rules)
-* [Acknowledgement](#thanks)
+* [How to Run the Game](#How-to-Run-the-Game)
+* [Rules of the Game](#Rules-of-the-Game)
+* [Acknowledgement](#Acknowledgement)
 
 ## How to Run the Game
 
